@@ -2,7 +2,9 @@ import ProductModel from "../models/product.model.js";
 
 class ProductController {
     index = async (req, res) => {
-        res.render("index", { products: [] });
+        const products = await new ProductModel().fetchAllProducts();
+
+        res.render("index", { products });
     }
 }
 
