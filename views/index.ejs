@@ -11,5 +11,23 @@
 <body>
     <%- include("partials/header") %>
     <h1 class="text-primary">Homepage</h1>
+    <div id="products-container" class="container mt-5"></div>
+        <div id="products-container" class="container mt-5">
+            <div class="row">
+                <% products.forEach(product => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= product.name %></h5>
+                                <p class="card-text"><%= product.description %></p>
+                                <p class="card-text">Price: $<%= product.price %></p>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
