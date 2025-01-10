@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/vendors/css/bootstrap.css">
+    <script src="/vendors/js/jquery.js"></script>
+    <script src="/customs/js/index.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow" style="max-width: 400px; width: 100%;">
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <img src="https://via.placeholder.com/150x50?text=Shopee+Logo" alt="Shopee Logo" class="img-fluid">
+                </div>
+                <h5 class="card-title text-center mb-3">Log in to Shopee</h5>
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username or Email</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="form-control"
+                            placeholder="Enter your username or email"
+                            value="jerick"
+                        >
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password"
+                            class="form-control" 
+                            placeholder="Enter your password" 
+                            value="arlantico"
+                        >
+                        <div id="error_message" class="text-danger mt-1"><%= error %></div>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
