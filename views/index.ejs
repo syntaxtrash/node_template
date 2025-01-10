@@ -5,29 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="/vendors/css/bootstrap.css">
+    <link rel="stylesheet" href="/customs/css/index.css">
     <script src="/vendors/js/jquery.js"></script>
     <script src="/customs/js/index.js"></script>
 </head>
 <body>
     <%- include("partials/header") %>
     <h1 class="text-primary">Homepage</h1>
-    <div id="products-container" class="container mt-5"></div>
-        <div id="products-container" class="container mt-5">
-            <div class="row">
-                <% products.forEach(product => { %>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= product.name %></h5>
-                                <p class="card-text"><%= product.description %></p>
-                                <p class="card-text">Price: $<%= product.price %></p>
-                                <button class="btn btn-primary">Add to Cart</button>
+    <div id="products-container" class="container mt-3">
+        <div class="row g-1">
+            <% products.forEach(product => { %>
+                <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col-6 col-lg-2 col-md-3">
+                    <div class="card h-100">
+                        <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid" alt="<%= product.name %>" style="height: 100px; object-fit: cover;">
+                        <div class="card-body p-1">
+                            <h6 class="card-title text-truncate mb-1" style="font-size: 0.75rem;"><%= product.name %></h6>
+                            <p class="card-text text-muted small mb-1" style="font-size: 0.65rem;"><%= product.description %></p>
+                            <p class="card-text text-primary fw-bold mb-1" style="font-size: 0.8rem;">₱<%= product.price %></p>
+    
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex">
+                                    <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm p-0" style="width: 20px; height: 20px;">-</button>
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm text-center mx-1" style="width: 35px; padding: 0;">
+                                    <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm p-0" style="width: 20px; height: 20px;">+</button>
+                                </div>
+                                <button type="submit" class="add-to-cart-btn btn btn-primary btn-sm px-1" style="font-size: 0.7rem;">Add</button>
                             </div>
+    
+                            <input type="hidden" name="product_id" value="<%= product.id %>">
                         </div>
                     </div>
-                <% }) %>
-            </div>
+                </form>
+            <% }) %>
         </div>
     </div>
+    
 </body>
 </html>

@@ -1,3 +1,4 @@
+import { format } from "mysql2";
 import DatabaseModel from "./database.model.js";
 
 class ProductModel extends DatabaseModel{
@@ -5,8 +6,16 @@ class ProductModel extends DatabaseModel{
         super();
     }
 
-    fetchAllProducts = async () => {
-        return await this.executeQuery("SELECT * FROM products");
+    fetchProductRecord = async (fields_to_select = "*", where_clause = "", where_values = []) => {
+        return await this.executeQuery(format(
+            `SELECT ${fields_to_select} FROM products
+            ${where_clause ? `WHERE ${where_clause}` : ""}
+            `, where_values
+        ));
+    } 
+
+    insertUserCartProductsData = async (products_data) => {
+        return await this.executeQuery(format("INSERT INTO user_cart_products SET ?", [products_data]));
     }
 }
 
