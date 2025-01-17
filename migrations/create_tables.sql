@@ -80,13 +80,13 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `description` varchar(45) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `price` decimal(8,2) NOT NULL,
   `image_path` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +95,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Backpack','A durable and spacious backpack, perfect for work, school, or travel. Features multiple compartments to keep your essentials organized.',500.00,'backpack.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(2,'Headphones','Enjoy crystal-clear audio with these lightweight and comfortable headphones. Perfect for music, calls, or gaming on the go.\n\n',1000.00,'headphones.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(3,'Red T-shirt\n','Stylish and versatile red t-shirt made from breathable cotton fabric. Ideal for casual wear or layering.',350.00,'red-tshirt.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(4,'Running Shoes','Lightweight and cushioned running shoes designed for comfort and performance. Perfect for jogging, workouts, or daily wear.',2000.00,'running-shoes.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(5,'Smartwatch','Sleek and modern smartwatch with fitness tracking, notifications, and customizable watch faces. Stay connected and active.',2600.00,'smartwatch.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,4 +162,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-17 10:44:04
+-- Dump completed on 2025-01-17 10:56:10
