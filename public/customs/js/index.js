@@ -4,12 +4,13 @@ $(document).ready(function() {
         .on("submit", ".add-to-cart-form", handleClickAddToCart)
 });
 
+/* Handles the submission of the add-to-cart form. */
 function handleClickAddToCart(){
     const add_to_cart_form = $(this);
     const quantity_input_field = add_to_cart_form.find("input[name='quantity']");
     const quantity = parseInt(quantity_input_field.val());
 
-    quantity_input_field.val(quantity > 0 ? quantity : 1);
+    quantity_input_field.val((quantity > 0) ? quantity : 1);
 
     $.post(add_to_cart_form.attr("action"), add_to_cart_form.serialize(), (result) => {
         alert(result.message);
@@ -19,6 +20,7 @@ function handleClickAddToCart(){
     return false;
 }
 
+/* Handles the click event on quantity change buttons. */
 function handleChangeQuantity(){
     const change_quantity_button = $(this);    
     const quantity_input = change_quantity_button.siblings("input[name='quantity']");

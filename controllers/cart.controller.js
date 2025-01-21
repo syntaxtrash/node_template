@@ -69,6 +69,27 @@ class ProductController {
 
         res.json(response_data);
     }
+
+    checkout = async (req, res) => {
+        const response_data = { status: false, message: "" };
+
+        try{
+            const userCartProductModel = new UserCartProductModel();
+            const { affectedRows } = await userCartProductModel.clearUserCartProducts(req.session.user.id);
+            
+            if(affectedRows){
+                response_data.status = !!affectedRows;
+            }
+            else{
+                response_data.message = "Failed to checkout products on cart.";
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+
+        res.json(response_data);
+    }
 }
 
 export default new ProductController;

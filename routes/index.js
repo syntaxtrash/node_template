@@ -21,5 +21,6 @@ router.post("/products/add-to-cart", productController.addProductToCart);
 router.get("/carts", cartController.index);
 router.post("/carts/update", cartController.updateCartData);
 router.post("/carts/remove-product", cartController.removeProductToCart);
+router.post("/carts/checkout", cartController.checkout);
 
 export default router;
