@@ -1,16 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Shopee</a>
-  <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-              <a href="/carts" class="nav-link">Cart</a>
-          </li>
-          <li class="nav-item">
-              <span class="nav-link"><%= user.username.toUpperCase() %></span>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-          </li>
-      </ul>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/images/logo.png" alt="Shopee" class="d-inline-block align-middle" style="width: 100px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/carts" class="nav-link">
+                        <i class="bi bi-cart-fill"></i> Cart
+                    </a>
+                </li>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-cart-fill"></i> <%= user.username.toUpperCase() %>
+                </a>
+                <a href="/logout" class="nav-link">
+                    <i class="bi bi-cart-fill"></i> Logout
+                </a>
+            </ul>
+        </div>
+    </div>
 </nav>
