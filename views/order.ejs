@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="/vendors/css/bootstrap.css">
+    <link rel="stylesheet" href="/customs/css/index.css">
+    <script src="/vendors/js/jquery.js"></script>
+    <script src="/customs/js/order-history.js"></script>
+</head>
+<body>
+    <%- include("partials/header") %>
+    
+    <div class="container mt-5">
+        <h1 class="text-primary mb-4">Order History</h1>
+        
+        <% if (orders.length > 0) { %>
+            <div class="list-group">
+                <% orders.forEach(order => { 
+                    let total = 0; %>
+                    <div class="list-group-item mb-3 shadow-sm">
+                        <h5 class="mb-3">Order ID: <%= order.id %> - <%= new Date(order.ordered_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% order.products.forEach(product => { 
+                                        const subtotal = product.price * product.quantity;
+                                        total += subtotal %>
+                                        <tr>
+                                            <td class="d-flex align-items-center">
+                                                <img src="/images/<%= product.image_path %>" alt="<%= product.name %>" class="img-fluid me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                <%= product.name %>
+                                            </td>
+                                            <td><%= product.quantity %></td>
+                                            <td>₱<%= product.price %></td>
+                                            <td>₱<%= subtotal %></td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" class="text-end fw-bold">Total:</td>
+                                        <td class="fw-bold">₱<%= total %></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } 
+        else { %>
+            <p class="text-center">You have no orders yet.</p>
+        <% } %>
+    </div>
+</body>
+</html>

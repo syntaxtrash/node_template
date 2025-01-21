@@ -1,4 +1,4 @@
-import OrderModel from "../models/orders.model.js";
+import OrderModel from "../models/order.model.js";
 import UserCartProductModel from "../models/user_cart_product.model.js";
 
 class ProductController {

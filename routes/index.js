@@ -5,6 +5,7 @@ import { Router } from "express";
 import productController from "../controllers/product.controller.js";
 import userController from "../controllers/user.controller.js";
 import cartController from "../controllers/cart.controller.js";
+import orderController from "../controllers/order.controller.js";
 
 const router = Router();
 
@@ -22,5 +23,8 @@ router.get("/carts", cartController.index);
 router.post("/carts/update", cartController.updateCartData);
 router.post("/carts/remove-product", cartController.removeProductToCart);
 router.post("/carts/checkout", cartController.checkout);
+
+/* Orders */
+router.get("/orders", orderController.index);
 
 export default router;
