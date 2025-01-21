@@ -16,61 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ordered_products`
---
-
-DROP TABLE IF EXISTS `ordered_products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ordered_products` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `quantity` int DEFAULT NULL,
-  `price` decimal(8,2) DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ordered_products`
---
-
-LOCK TABLES `ordered_products` WRITE;
-/*!40000 ALTER TABLE `ordered_products` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ordered_products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders`
---
-
-DROP TABLE IF EXISTS `orders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `orders` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `total_price` decimal(8,2) DEFAULT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders`
---
-
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `products`
 --
 
@@ -95,7 +40,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Backpack','A durable and spacious backpack, perfect for work, school, or travel. Features multiple compartments to keep your essentials organized.',500.00,'backpack.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(2,'Headphones','Enjoy crystal-clear audio with these lightweight and comfortable headphones. Perfect for music, calls, or gaming on the go.\n\n',1000.00,'headphones.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(3,'Red T-shirt\n','Stylish and versatile red t-shirt made from breathable cotton fabric. Ideal for casual wear or layering.',350.00,'red-tshirt.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(4,'Running Shoes','Lightweight and cushioned running shoes designed for comfort and performance. Perfect for jogging, workouts, or daily wear.',2000.00,'running-shoes.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(5,'Smartwatch','Sleek and modern smartwatch with fitness tracking, notifications, and customizable watch faces. Stay connected and active.',2600.00,'smartwatch.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08');
+INSERT INTO `products` VALUES (1,'Backpack','A durable and spacious backpack, perfect for work, school, or travel. Features multiple compartments to keep your essentials organized.',500.00,'backpack.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(2,'Headphones','Enjoy crystal-clear audio with these lightweight and comfortable headphones. Perfect for music, calls, or gaming on the go.\n\n',1000.00,'headphones.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(3,'Red T-shirt\r','Stylish and versatile red t-shirt made from breathable cotton fabric. Ideal for casual wear or layering.',350.00,'red-tshirt.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(4,'Running Shoes','Lightweight and cushioned running shoes designed for comfort and performance. Perfect for jogging, workouts, or daily wear.',2000.00,'running-shoes.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08'),(5,'Smartwatch','Sleek and modern smartwatch with fitness tracking, notifications, and customizable watch faces. Stay connected and active.',2600.00,'smartwatch.jpg','2025-01-17 10:49:08','2025-01-17 10:49:08');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-17 10:56:10
+-- Dump completed on 2025-01-21  9:15:25
