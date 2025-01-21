@@ -1,13 +1,13 @@
 $(document).ready(function() {
-    $("body")
-        .on("click", ".decrease-qty-btn, .increase-qty-btn", handleChangeQuantity)
+    $("#carts-container")
+        .on("click", ".decrease-qty-btn, .increase-qty-btn", handleChangeCartQuantity)
         .on("submit", "form.update-cart-form", handleSubmitUpdateCart)
         .on("submit", "form.remove-to-cart-form", handleSubmitRemoveToCart)
         .on("submit", "form.checkout-form", handleSubmitCheckOut)
 });
 
 /* Handles the quantity change event for increase and decrease buttons. */
-function handleChangeQuantity(){
+function handleChangeCartQuantity(){
     $(".decrease-qty-btn,.increase-qty-btn").addClass("disabled");
 
     const change_quantity_button = $(this);    

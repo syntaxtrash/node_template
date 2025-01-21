@@ -14,7 +14,7 @@ function handleClickAddToCart(){
 
     $.post(add_to_cart_form.attr("action"), add_to_cart_form.serialize(), (result) => {
         alert(result.message);
-        result.status && add_to_cart_form.find("input[name='quantity']").val(1);
+        location.reload();
     });
 
     return false;

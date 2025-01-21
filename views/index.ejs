@@ -7,37 +7,109 @@
     <link rel="stylesheet" href="/vendors/css/bootstrap.css">
     <script src="/vendors/js/jquery.js"></script>
     <script src="/customs/js/index.js"></script>
+    <script src="/customs/js/cart.js"></script>
 </head>
 <body>
     <%- include("partials/header") %>
     
     <h1 class="text-primary text-center my-4">Homepage</h1>
     
-    <div id="products-container" class="container">
+    <div class="container-fluid">
         <div class="row g-4">
-            <% products.forEach(product => { %>
-                <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col">
-                    <div class="card h-100">
-                        <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid" alt="<%= product.name %>" style="height: 200px; object-fit: cover;">
-                        <div class="card-body">
-                            <h6 class="card-title text-truncate" style="font-size: 0.85rem;"><%= product.name %></h6>
-                            <p class="card-text text-muted mb-2" style="font-size: 0.75rem; height: 60px; overflow: hidden; text-overflow: ellipsis;"><%= product.description %></p>
-                            <p class="card-text text-primary fw-bold mb-2" style="font-size: 0.9rem;">₱<%= product.price %></p>
-
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex align-items-center">
-                                    <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button>
-                                    <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm mx-1" style="width: 40px;">
-                                    <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button>
+            <!-- Products Section -->
+            <div id="products-container" class="col-8">
+                <div class="row">
+                    <% products.forEach(product => { %>
+                        <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col-6 col-sm-4 col-md-3">
+                            <div class="card h-100">
+                                <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid" alt="<%= product.name %>" style="height: 200px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h6 class="card-title text-truncate" style="font-size: 1rem;"><%= product.name %></h6>
+                                    <p class="card-text text-muted mb-2" style="font-size: 0.9rem; height: 60px; overflow: hidden; text-overflow: ellipsis;"><%= product.description %></p>
+                                    <p class="card-text text-primary fw-bold mb-2" style="font-size: 1rem;">₱<%= product.price %></p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button>
+                                            <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm mx-1" style="width: 50px;">
+                                            <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                                    </div>
+                                    <input type="hidden" name="product_id" value="<%= product.id %>">
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm">Add</button>
                             </div>
+                        </form>
+                    <% }) %>
+                </div>
+            </div>
 
-                            <input type="hidden" name="product_id" value="<%= product.id %>">
-                        </div>
+            <!-- Cart Section -->
+            <div id="carts-container" class="col-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="m-0">Shopping Cart</h5>
                     </div>
-                </form>
-            <% }) %>
+                    <div class="card-body">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Action</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%  let total_price = 0;
+
+                                if(products_on_cart.length){
+                                    products_on_cart.forEach((product) => { 
+                                        const sub_total = product.price * product.quantity;
+                                        total_price += sub_total; %>
+
+                                        <tr class="cart-product">
+                                            <td class="name"><%= product.name %></td>
+                                            <td>₱<span class="price"><%= product.price %></span></td>
+                                            <td>
+                                                <form action="/carts/update" method="POST" class="update-cart-form d-inline">
+                                                    <input type="hidden" name="product_id" value="<%= product.id %>">
+                                                    <div class="input-group">
+                                                        <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button>
+                                                        <input type="number" name="quantity" value="<%= product.quantity %>" min="1" class="form-control text-center" style="width: 60px;">
+                                                        <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="/carts/remove-product" method="POST" class="remove-to-cart-form d-inline">
+                                                    <input type="hidden" name="product_id" value="<%= product.id %>">
+                                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                                </form>
+                                            </td>
+                                            <td>₱<span class="subtotal"><%= sub_total %></span></td>
+                                        </tr>
+                                    <% }) %>
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td>₱<span id="overall-total"><%= total_price %></span></td>
+                                        </tr>
+                                <% }
+                                else{ %>
+                                    <tr>
+                                        <td colspan="5" class="text-center">Your cart is empty.</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <% if(products_on_cart.length){ %>
+                        <form class="checkout-form card-footer text-center" action="/carts/checkout" method="POST">
+                            <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 

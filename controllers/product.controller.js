@@ -4,15 +4,17 @@ import UserCartProductModel from "../models/user_cart_product.model.js";
 class ProductController {
     index = async (req, res) => {
         let products = [];
+        let products_on_cart = [];
 
         try{
             products = await new ProductModel().fetchProductRecord();    
+            products_on_cart = await new UserCartProductModel().fetchProductsOnCart(req.session.user.id);    
         }
         catch(error){
             console.log(error);
         }
 
-        res.render("index", { user: req.session.user, products });
+        res.render("index", { user: req.session.user, products, products_on_cart });
     }
     
     addProductToCart = async (req, res) => {
