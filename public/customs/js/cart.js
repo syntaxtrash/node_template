@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    $("#cart-container")
+    $("body")
         .on("click", ".decrease-qty-btn, .increase-qty-btn", handleChangeQuantity)
         .on("submit", "form.update-cart-form", handleSubmitUpdateCart)
-        .on("submit", "form.remove-to-cart-form", handleRemoveToCart)
+        .on("submit", "form.remove-to-cart-form", handleSubmitRemoveToCart)
+        .on("submit", "form.checkout-form", handleSubmitCheckOut)
 });
 
 function handleChangeQuantity(){
@@ -41,7 +42,7 @@ function handleSubmitUpdateCart(){
     return false;
 }
 
-function handleRemoveToCart(){
+function handleSubmitRemoveToCart(){
     const remove_to_cart_form = $(this);
 
     $.post(remove_to_cart_form.attr("action"), remove_to_cart_form.serialize(), (result) => {
@@ -56,6 +57,28 @@ function handleRemoveToCart(){
         }
 
     });
+
+    return false;
+}
+
+function handleSubmitCheckOut(){
+    let order_details = "Order Details:\n\n";
+    const order = [];
+
+    $(".cart-product").each(function(){
+        const product = $(this);
+        const name = product.find(".product-name").text();
+        const price = product.find(".product-price").text();
+        const quantity = product.find("input[name='quantity']").val();
+        const subtotal = product.find(".subtotal").text();
+
+        
+        order.push({name, price, quantity, subtotal});
+        order_details += `${quantity} ${name.trim()} = ${subtotal}\n`;
+    });
+    
+    order_details += `Overall Total: ${$("#overall-total").text()}`;
+    alert(order_details);
 
     return false;
 }
