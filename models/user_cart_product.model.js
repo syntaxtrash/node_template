@@ -27,6 +27,25 @@ class UserCartProductModel extends DatabaseModel{
         ));
     }
 
+    fetchCartProductsDetails = async (user_id, product_ids) => {
+        const fetch_cart_products_details = format(`
+             SELECT SUM(user_cart_products.quantity * products.price) AS total_price,
+                JSON_ARRAYAGG(JSON_OBJECT(
+                    "id", products.id,
+                    "quantity", user_cart_products.quantity,
+                    "name", products.name,
+                    "price", products.price
+                )) AS product_details
+            FROM user_cart_products
+            INNER JOIN products
+                ON products.id = user_cart_products.product_id
+            WHERE user_id = ?
+            AND products.id IN (?);
+        `, [user_id, product_ids]);
+
+        return await this.executeQuery(fetch_cart_products_details);
+    }
+
     insertUserCartProductsData = async (products_data) => {
         return await this.executeQuery(format("INSERT INTO user_cart_products SET ?", [products_data]));
     }

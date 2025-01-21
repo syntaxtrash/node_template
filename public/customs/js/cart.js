@@ -63,25 +63,15 @@ function handleSubmitRemoveToCart(){
 /* Handles the form submission for checking out. */
 function handleSubmitCheckOut(){
     const checkout_form = $(this);
-    const order = [];
-    let order_details = "Order Details:\n\n";
-
-    $(".cart-product").each(function(){
-        const product = $(this);
-        const name = product.find(".name").text();
-        const price = product.find(".price").text();
-        const quantity = product.find("input[name='quantity']").val();
-        const subtotal = product.find(".subtotal").text();
-        
-        order.push({name, price, quantity, subtotal});
-        order_details += `${quantity} ${name.trim()} = ${subtotal}\n`;
-    });
+    const product_ids = $(".cart-product").map(function() {
+        return $(this).find("input[name='product_id']").val();
+    }).get();
     
-    order_details += `Overall Total: ${$("#overall-total").text()}`;
+    checkout_form.find("input[name='product_ids']").val(JSON.stringify(product_ids));
 
     $.post(checkout_form.attr("action"), checkout_form.serialize(), (result) => {
         if(result.status){
-            alert(order_details);
+            alert("Items successfully checked out.");
             location.reload();
         }
         else{

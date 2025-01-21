@@ -73,6 +73,7 @@
         <div class="text-end">
 <%          if(products_on_cart.length){ %>
                 <form class="checkout-form" action="/carts/checkout" method="POST">
+                    <input type="hidden" name="product_ids" value="">
                     <button type="submit" class="btn btn-success">Checkout</button>
                 </form>
 <%          } %>
