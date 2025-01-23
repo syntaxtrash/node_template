@@ -2,6 +2,7 @@ $(document).ready(function() {
     $("#products-container")
         .on("click", ".decrease-qty-btn, .increase-qty-btn", handleChangeQuantity)
         .on("submit", ".add-to-cart-form", handleClickAddToCart)
+        .on("click", ".product-image", showProductImageModal)
 });
 
 /* Handles the submission of the add-to-cart form. */
@@ -34,4 +35,14 @@ function handleChangeQuantity(){
     else if(!is_increase && current_quantity > 1){
         quantity_input.val(parseInt(quantity_input.val()) - 1);
     }
+}
+
+function showProductImageModal(){
+    const image = $(this);
+    const image_src = image.attr("src");
+    const image_name = image.attr("alt");
+
+    $("#modal-image").attr("src", image_src);
+    $("#modal-image").attr("alt", image_name);
+    $("#modal-title").text(image_name.toUpperCase());
 }
