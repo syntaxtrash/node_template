@@ -6,6 +6,7 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="/vendors/css/bootstrap.css">
     <script src="/vendors/js/jquery.js"></script>
+    <script src="/vendors/js/bootstrap.bundle.min.js"></script>
     <script src="/customs/js/index.js"></script>
 </head>
 <body>
@@ -18,7 +19,7 @@
             <% products.forEach(product => { %>
                 <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col">
                     <div class="card h-100">
-                        <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid" alt="<%= product.name %>" style="height: 200px; object-fit: cover;">
+                        <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid product-image" alt="<%= product.name %>" style="height: 200px; object-fit: cover;" data-bs-toggle="modal" data-bs-target="#show-image-modal">
                         <div class="card-body">
                             <h6 class="card-title text-truncate" style="font-size: 0.85rem;"><%= product.name %></h6>
                             <p class="card-text text-muted mb-2" style="font-size: 0.75rem; height: 60px; overflow: hidden; text-overflow: ellipsis;"><%= product.description %></p>
@@ -40,6 +41,22 @@
             <% }) %>
         </div>
     </div>
-
+    
+    <div class="modal fade" id="show-image-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-title"></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container">
+              <img class="w-100" id="modal-image" src="" alt="" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
