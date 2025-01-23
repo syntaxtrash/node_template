@@ -22,7 +22,7 @@ class ProductController {
             const { product_id, quantity = 1 } = req.body;
             const [ product_details ] = await new ProductModel().fetchProductRecord("id, name", "id = ?", [product_id]);;
 
-            if(product_details.id){
+            if(product_details?.id){
                 const userCartProductModel = new UserCartProductModel();
                 /* Check if the product to be added is already in the cart. */
                 const [ cart_product ] = await userCartProductModel.fetchUserCartProductRecord(
