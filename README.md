@@ -1,2 +1,2 @@
 ## Database Entity Relationship Diagram
-![erd NODE TRUE FINAL v3](https://github.com/user-attachments/assets/da9f755a-7d85-4eef-bb7f-24319a85aad7)
+![erd NODE TRUE](https://github.com/user-attachments/assets/85ef72db-f1f7-404d-99d3-cf9d6a980ae4)
