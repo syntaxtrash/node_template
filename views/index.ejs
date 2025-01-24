@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="/vendors/css/bootstrap.css">
-    <script src="/vendors/js/jquery.js"></script>
-    <script src="/customs/js/index.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Homepage</title>
+		<link rel="stylesheet" href="/vendors/css/bootstrap.css">
+		<script src="/vendors/js/jquery.js"></script>
+		<script src="/vendors/js/bootstrap.bundle.min.js"></script>
+		<script src="/customs/js/index.js"></script>
 </head>
 <body>
-    <%- include("partials/header") %>
-    <h1 class="text-primary">Homepage</h1>
+		<%- include("partials/header") %>
+		<h1 class="text-primary text-center my-4" data-bs-toggle="modal" data-bs-target="#show-image-modal">Homepage</h1>
+
+		<div class="modal fade" id="show-image-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal-title"></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body container">
+						<img class="w-100" id="modal-image" src="" alt="" style="height: 300px; object-fit: cover;">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
