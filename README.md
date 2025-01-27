@@ -24,24 +24,11 @@ npm run dev
 
 
 
-
-# The port on which the application will run
+.env
 PORT=8080
-
-# The hostname of the database server
 DATABASE_HOST=localhost
-
-# The username to connect to the database
 DATABASE_USER=root
-
-# The password to connect to the database
 DATABASE_PASSWORD=password
-
-# The name of the database
 DATABASE_NAME=tesda
-
-# The port on which the database server is running
 DATABASE_PORT=3306
-
-# The secret key for session management
 SESSION_SECRET=SECRET
