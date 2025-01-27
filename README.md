@@ -39,3 +39,10 @@ DATABASE_NAME=tesda
 DATABASE_PORT=3306
 
 SESSION_SECRET=SECRET
+
+
+
+git
+vscode
+MySQL
+node
