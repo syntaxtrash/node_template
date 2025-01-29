@@ -11,8 +11,9 @@
 
 - Git
 - VSCode
-- MySQL
 - Node.js
+- MySQL
+- Open MySQL installer and install MySQL Workbench
 
 ## Steps to Run the Template
 
