@@ -91,6 +91,7 @@ CREATE TABLE `products` (
   `description` varchar(255) DEFAULT NULL,
   `price` decimal(8,2) NOT NULL,
   `image_path` varchar(255) DEFAULT NULL,
+  `thumbnail` varchar(255) DEFAULT NULL,  -- New thumbnail field
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
