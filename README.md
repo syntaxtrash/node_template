@@ -69,7 +69,7 @@
     ```
 
 6. **Run the Application**
-    - Finally, run the development server by executing:
+    - Finally, run the development server by executing (make sure you are in the root directory):
       ```bash
       npm run dev
       ```
