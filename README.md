@@ -32,14 +32,17 @@
 3. **Set Up the Database**
     - Open MySQL Workbench and create a new schema (database).
 
-4. **Run Migrations**
+4. **Move the Images**
+    - Move the provided images on the `public/images` directory
+
+5. **Run Migrations**
     - Navigate to the `./migrations` folder and run the following files:
     
-    4.1 **Create Tables**
+    5.1 **Create Tables**
     - Run the `create_tables.sql` file to create the necessary tables in your database.
       - Open it in MySQL Workbench and make sure to select the newly created schema as the default database before running the script.
 
-    4.2 **Generate MySQL Queries**
+    5.2 **Generate MySQL Queries**
     - Open the terminal and navigate to the `migrations` directory:
       ```bash
       cd migrations
@@ -49,12 +52,12 @@
       .\generate_mysql_queries.sh
       ```
 
-    4.3 **Insert Data**
+    5.3 **Insert Data**
     - After running the `generate_mysql_queries.sh` script, a new file called `insert_queries.sql` should be created.
     - Open `insert_queries.sql` in MySQL Workbench and run it to insert the required product data.
       - Again, make sure to select the newly created schema as the default database before executing the script.
 
-5. **Create `.env` File**
+6. **Create `.env` File**
     - Create a new file called `.env` in the root directory of the project.
     - Use the following sample values to configure your environment variables:
 
@@ -68,7 +71,7 @@
     SESSION_SECRET=SECRET
     ```
 
-6. **Run the Application**
+7. **Run the Application**
     - Finally, run the development server by executing (make sure you are in the root directory):
       ```bash
       npm run dev
