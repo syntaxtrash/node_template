@@ -12,32 +12,30 @@
 <body>
     <%- include("partials/header") %>
     
-    <h1 class="text-secondary m-4">Cart</h1>
-    
     <div class="container-fluid">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="table-secondary">
-                    <tr>
-                        <th class="w-25">Product</th>
-                        <th class="w-25">Price</th>
-                        <th class="w-25">Subtotal</th>
-                        <th >Quantity</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-container">
-<%                  let total_price = 0;
-
-                    if(products_on_cart.length){
-                        products_on_cart.forEach(product => {
-                            const sub_total = product.price * product.quantity;
-                            total_price +=  sub_total;
-%>
+        <h1 class="text-secondary m-4">Cart</h1>
+        
+        <% if (products_on_cart.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th class="w-25">Product</th>
+                            <th class="w-25">Price</th>
+                            <th class="w-25">Subtotal</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-container">
+                        <% let total_price = 0;
+                           products_on_cart.forEach(product => {
+                           const sub_total = product.price * product.quantity;
+                           total_price += sub_total; %>
                             <tr class="cart-product">
                                 <td class="name"><%= product.name %></td>
-                                <td>₱<span class="price"><%= product.price %></span></td>
-                                <td>₱<span class="subtotal"><%= sub_total %></span></td>
+                                <td>$<span class="price"><%= product.price %></span></td>
+                                <td>$<span class="subtotal"><%= sub_total %></span></td>
                                 <td>
                                     <form action="/carts/update" method="POST" class="update-cart-form d-inline">
                                         <input type="hidden" name="product_id" value="<%= product.id %>">
@@ -55,29 +53,24 @@
                                     </form>
                                 </td>
                             </tr>
-<%                      });
-                    }
-                    else { %>
-                        <tr>
-                            <td colspan="6" class="text-center">Empty cart.</td>
-                        </tr>
-<%                  } %>
-                </tbody>
-            </table>
-        </div>
-        <div class="container-fluid">
-            <div class="d-flex justify-content-end align-items-center gap-4 mt-3">
-                <% if(products_on_cart.length){ %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container-fluid">
+                <div class="d-flex justify-content-end align-items-center gap-4 mt-3">
                     <div class="fs-4 fw-bold">
-                        Total: ₱<span id="overall-total"><%= total_price %></span>
+                        Total: $<span id="overall-total"><%= total_price %></span>
                     </div>
                     <form class="checkout-form" action="/carts/checkout" method="POST">
                         <input type="hidden" name="product_ids" value="">
                         <button type="submit" class="btn btn-success btn-lg">Checkout</button>
                     </form>
-                <% } %>
+                </div>
             </div>
-        </div>
+        <% } else { %>
+            <p class="text-center">Your cart is empty.</p>
+        <% } %>
     </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +8,55 @@
     <link rel="stylesheet" href="/vendors/css/bootstrap.css">
     <link rel="stylesheet" href="/customs/css/index.css">
 </head>
+
 <body>
     <%- include("partials/header") %>
-    
-    <div class="container-fluid">
-        <h1 class="text-secondary m-4">Order History</h1>
-        
-        <% if (orders.length > 0) { %>
-            <div class="list-group">
-                <% orders.forEach(order => { 
-                    let total = 0; %>
-                    <div class="list-group-item mb-3 shadow-sm">
-                        <h5 class="mb-3">Order #<%= order.id %> - <%= new Date(order.ordered_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></h5>
-                        <div class="row g-2">
-                            <% order.products.forEach(product => { 
-                                const subtotal = product.price * product.quantity;
-                                total += subtotal %>
-                                <div class="col-12 border-bottom py-2">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center">
-                                            <img src="/images/<%= product.image_path %>" alt="<%= product.name %>" class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
-                                            <div>
-                                                <div><%= product.name %></div>
-                                                <small class="text-muted">Qty: <%= product.quantity %> × ₱<%= product.price %></small>
+
+        <div class="container-fluid">
+            <h1 class="text-secondary m-4">Order History</h1>
+
+            <% if (orders.length> 0) { %>
+                <div class="list-group">
+                    <% orders.forEach(order=> {
+                        let total = 0; %>
+                        <div class="list-group-item mb-3 shadow-sm">
+                            <h5 class="mb-3">Order #<%= order.id %> - <%= new
+                                        Date(order.ordered_at).toLocaleDateString('en-US', { year: 'numeric' ,
+                                        month: 'short' , day: 'numeric' }) %>
+                            </h5>
+                            <div class="row g-2">
+                                <% order.products.forEach(product=> {
+                                    const subtotal = product.price * product.quantity;
+                                    total += subtotal %>
+                                    <div class="col-12 border-bottom py-2">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="/images/<%= product.image_path %>" alt="<%= product.name %>"
+                                                    class="me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <div>
+                                                    <div>
+                                                        <%= product.name %>
+                                                    </div>
+                                                    <small class="text-muted">Qty: <%= product.quantity %> × $<%=
+                                                                product.price %></small>
+                                                </div>
+                                            </div>
+                                            <div>$<%= subtotal %>
                                             </div>
                                         </div>
-                                        <div>₱<%= subtotal %></div>
                                     </div>
-                                </div>
-                            <% }); %>
-                            <div class="col-12 text-end pt-2">
-                                <strong>Total: ₱<%= total %></strong>
+                                    <% }); %>
+                                        <div class="col-12 text-end pt-2">
+                                            <strong>Total: $<%= total %></strong>
+                                        </div>
                             </div>
                         </div>
-                    </div>
-                <% }); %>
-            </div>
-        <% } else { %>
-            <p class="text-center">You have no orders yet.</p>
-        <% } %>
-    </div>
+                        <% }); %>
+                </div>
+                <% } else { %>
+                    <p class="text-center">You have no orders yet.</p>
+                    <% } %>
+        </div>
 </body>
+
 </html>
