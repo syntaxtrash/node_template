@@ -3,47 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/vendors/css/bootstrap.css">
     <script src="/vendors/js/jquery.js"></script>
     <script src="/customs/js/index.js"></script>
+    <style>
+        .login-container {
+            max-width: 300px;
+            margin: 100px auto;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow" style="max-width: 400px; width: 100%;">
-            <div class="card-body">
-                <div class="text-center mb-4">
-                    <img src="https://via.placeholder.com/150x50?text=Shopee+Logo" alt="Shopee Logo" class="img-fluid">
-                </div>
-                <h5 class="card-title text-center mb-3">Log in to Shopee</h5>
-                <form action="/login" method="POST">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username or Email</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            class="form-control"
-                            placeholder="Enter your username or email"
-                            value="user"
-                        >
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password"
-                            class="form-control" 
-                            placeholder="Enter your password" 
-                            value="password"
-                        >
-                        <div id="error_message" class="text-danger mt-1"><%= error %></div>
-                    </div>
-                    <button type="submit" class="btn btn-danger w-100">Log In</button>
-                </form>
+<body>
+    <div class="login-container">
+        <h4 class="mb-4">Sign in to continue.</h4>
+        <form action="/login" method="POST">
+            <div class="mb-3">
+                <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    placeholder="Username"
+                    value="user"
+                >
             </div>
-        </div>
+            <div class="mb-3">
+                <input 
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Password"
+                    value="password"
+                >
+                <div class="text-danger mt-1"><%= error %></div>
+            </div>
+            <button type="submit" class="btn btn-success w-100">SIGN IN</button>
+        </form>
     </div>
 </body>
 </html>
