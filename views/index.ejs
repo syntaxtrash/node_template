@@ -12,26 +12,26 @@
 <body>
     <%- include("partials/header") %>
     
-    <h1 class="text-primary text-center my-4">Homepage</h1>
+    <h1 class="text-secondary m-4">Products</h1>
     
-    <div id="products-container" class="container">
+    <div id="products-container" class="container-fluid">
         <div class="row g-4">
             <% products.forEach(product => { %>
-                <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col">
+                <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col-12 col-sm-6 col-md-3 col-lg-2">
                     <div class="card h-100">
                         <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid product-image" alt="<%= product.name %>" style="height: 200px; object-fit: cover;" data-bs-toggle="modal" data-bs-target="#show-image-modal">
                         <div class="card-body">
-                            <h6 class="card-title text-truncate" style="font-size: 0.85rem;"><%= product.name %></h6>
-                            <p class="card-text text-muted mb-2" style="font-size: 0.75rem; height: 60px; overflow: hidden; text-overflow: ellipsis;"><%= product.description %></p>
-                            <p class="card-text text-primary fw-bold mb-2" style="font-size: 0.9rem;">₱<%= product.price %></p>
+                          <p class="card-text text-success fw-bold mb-0" style="font-size: 2rem;">₱<%= product.price %></p>
+                            <p class="card-text text-truncate  mb-0" style="font-size: 1rem;"><%= product.name %></p>
+                            <p class="card-text text-truncate  mb-0" style="font-size: 0.75rem; height: 30px; overflow: hidden; text-overflow: ellipsis;"><%= product.description %></p>
 
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex flex-column gap-2">
                                 <div class="d-flex align-items-center">
-                                    <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button>
-                                    <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm mx-1" style="width: 40px;">
-                                    <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button>
+                                    <!-- <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button> -->
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm mx-1" style="width: 100%;">
+                                    <!-- <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button> -->
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                                <button type="submit" class="btn btn-success btn-sm">Add</button>
                             </div>
 
                             <input type="hidden" name="product_id" value="<%= product.id %>">
@@ -51,9 +51,6 @@
             </div>
             <div class="modal-body container">
               <img class="w-100" id="modal-image" src="" alt="" style="height: 300px; object-fit: cover;">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
