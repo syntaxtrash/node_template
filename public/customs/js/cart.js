@@ -48,6 +48,10 @@ function handleSubmitUpdateCart(){
 function handleSubmitRemoveToCart(){
     const remove_to_cart_form = $(this);
 
+    if (!confirm("Are you sure you want to remove this item from cart?")) {
+        return false;
+    }
+
     $.post(remove_to_cart_form.attr("action"), remove_to_cart_form.serialize(), (result) => {
         if(result.status){
             location.reload();
