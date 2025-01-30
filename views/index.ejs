@@ -2,70 +2,47 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage</title>
-  <link rel="stylesheet" href="/vendors/css/bootstrap.css">
-  <script src="/vendors/js/jquery.js"></script>
-  <script src="/vendors/js/bootstrap.bundle.min.js"></script>
-  <script src="/customs/js/index.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/vendors/css/bootstrap.css">
+    <script src="/vendors/js/jquery.js"></script>
+    <script src="/vendors/js/bootstrap.bundle.min.js"></script>
+    <script src="/customs/js/index.js"></script>
 </head>
 
 <body>
-  <%- include("partials/header") %>
+    <%- include("partials/header") %>
 
-    <h1 class="text-secondary m-4">Products</h1>
+        <h1 class="m-4">Products</h1>
 
-    <div id="products-container" class="container-fluid">
-      <div class="row g-4">
-        <% products.forEach(product=> { %>
-          <form action="/products/add-to-cart" method="POST" class="add-to-cart-form col-12 col-sm-6 col-md-3 col-lg-2">
-            <div class="card h-100">
-              <img src="/images/<%= product.image_path %>" class="card-img-top img-fluid product-image"
-                alt="<%= product.name %>" style="height: 200px; object-fit: cover;" data-bs-toggle="modal"
-                data-bs-target="#show-image-modal">
-              <div class="card-body">
-                <p class="card-text text-success fw-bold mb-0" style="font-size: 2rem;">$<%= product.price %>
-                </p>
-                <p class="card-text text-truncate  mb-0" style="font-size: 1rem;">
-                  <%= product.name %>
-                </p>
-                <p class="card-text text-truncate  mb-0"
-                  style="font-size: 0.75rem; height: 30px; overflow: hidden; text-overflow: ellipsis;">
-                  <%= product.description %>
-                </p>
-
-                <div class="d-flex flex-column gap-2">
-                  <div class="d-flex align-items-center">
-                    <!-- <button type="button" class="decrease-qty-btn btn btn-outline-secondary btn-sm">-</button> -->
-                    <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm mx-1"
-                      style="width: 100%;">
-                    <!-- <button type="button" class="increase-qty-btn btn btn-outline-secondary btn-sm">+</button> -->
-                  </div>
-                  <button type="submit" class="btn btn-success btn-sm">Add</button>
-                </div>
-
-                <input type="hidden" name="product_id" value="<%= product.id %>">
-              </div>
+        <div id="products-container" class="container-fluid">
+            <div class="row">
+                <% products.forEach(product=> { %>
+                    <form action="/products/add-to-cart" method="POST"
+                        class="add-to-cart-form col-12 col-sm-6 col-md-3 p-2">
+                        <input type="hidden" name="product_id" value="<%= product.id %>">
+                        <img src="/images/<%= product.image_path %>" class="product-image"
+                            alt="<%= product.name %>" style="height: 200px; width: 100%; object-fit: cover;"
+                            data-bs-toggle="modal" data-bs-target="#show-image-modal">
+                        <p><%= product.name.toUpperCase() %></p>
+                        <p><%= product.description %></p>
+                        <p>$<%= product.price %></p>
+                        <input type="number" name="quantity" value="1" min="1" class="w-100">
+                        <button type="submit" class="btn btn-outline-dark w-100">Add to Cart</button>
+                    </form>
+                    <% }) %>
             </div>
-          </form>
-          <% }) %>
-      </div>
-    </div>
-
-    <div class="modal fade" id="show-image-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal-title"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body container">
-            <img class="w-100" id="modal-image" src="" alt="" style="height: 300px; object-fit: cover;">
-          </div>
         </div>
-      </div>
-    </div>
+
+        <div id="show-image-modal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="position: absolute; right: 10px; top: 10px;"></button>
+                    <img class="w-100" id="modal-image" src="" alt="">
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
