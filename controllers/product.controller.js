@@ -56,6 +56,26 @@ class ProductController {
 
         res.json(response_data);
     }
+
+    details = async (req, res) => {
+        try {
+            const [product] = await new ProductModel().fetchProductRecord(
+                "*",
+                "id = ?",
+                [req.params.id]
+            );
+            
+            if (!product) {
+                return res.redirect('/');
+            }
+            
+            res.render("product-details", { user: req.session.user, product });
+        }
+        catch(error) {
+            console.log(error);
+            res.redirect('/');
+        }
+    }
 }
 
 export default new ProductController;

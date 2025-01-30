@@ -18,20 +18,24 @@
 
         <div id="products-container" class="container-fluid">
             <div class="row">
-                <% products.forEach(product=> { %>
-                    <form action="/products/add-to-cart" method="POST"
-                        class="add-to-cart-form col-12 col-sm-6 col-md-3 p-2">
-                        <input type="hidden" name="product_id" value="<%= product.id %>">
-                        <img src="/images/<%= product.image_path %>" class="product-image"
-                            alt="<%= product.name %>" style="height: 200px; width: 100%; object-fit: cover;"
-                            data-bs-toggle="modal" data-bs-target="#show-image-modal">
-                        <p><%= product.name.toUpperCase() %></p>
-                        <p><%= product.description %></p>
-                        <p>$<%= product.price %></p>
-                        <input type="number" name="quantity" value="1" min="1" class="w-100">
-                        <button type="submit" class="btn btn-outline-dark w-100">Add to Cart</button>
-                    </form>
-                    <% }) %>
+                <% products.forEach(product => { %>
+                    <div class="col-12 col-sm-6 col-md-3 p-2">
+                        <a href="/products/<%= product.id %>" class="text-decoration-none text-dark">
+                            <img src="/images/<%= product.image_path %>" 
+                                 class="product-image"
+                                 alt="<%= product.name %>" 
+                                 style="height: 200px; width: 100%; object-fit: cover;">
+                            <p class="mt-2 mb-1"><%= product.name.toUpperCase() %></p>
+                            <p class="text-secondary"><%= product.description %></p>
+                            <p class="text-primary">$<%= product.price %></p>
+                        </a>
+                        <form action="/products/add-to-cart" method="POST" class="add-to-cart-form">
+                            <input type="hidden" name="product_id" value="<%= product.id %>">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control mb-2">
+                            <button type="submit" class="btn btn-outline-dark w-100">Add to Cart</button>
+                        </form>
+                    </div>
+                <% }) %>
             </div>
         </div>
 

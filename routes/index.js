@@ -16,7 +16,9 @@ router.post("/login", userController.processLogin);
 
 /* Products */
 router.get("/", productController.index);
+router.get("/products", productController.index);
 router.post("/products/add-to-cart", productController.addProductToCart);
+router.get("/products/:id", productController.details);
 
 /* Carts */
 router.get("/carts", cartController.index);
