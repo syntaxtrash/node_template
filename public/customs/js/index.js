@@ -48,11 +48,3 @@ function showProductImageModal(){
     $("#modal-image").attr("alt", image_name);
     $("#modal-title").text(image_name.toUpperCase());
 }
-
-// Add this new function
-function handleLogout(e) {
-    e.preventDefault();
-    if (confirm("Are you sure you want to logout?")) {
-        window.location.href = "/logout";
-    }
-}
