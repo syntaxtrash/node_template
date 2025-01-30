@@ -2,7 +2,9 @@ $(document).ready(function() {
     $("#products-container")
         .on("click", ".decrease-qty-btn, .increase-qty-btn", handleChangeQuantity)
         .on("submit", ".add-to-cart-form", handleClickAddToCart)
-        .on("click", ".product-image", showProductImageModal)
+        .on("click", ".product-image", showProductImageModal);
+
+    $("#logout-link").on("click", handleLogout);
 });
 
 /* Handles the submission of the add-to-cart form. */
@@ -45,4 +47,12 @@ function showProductImageModal(){
     $("#modal-image").attr("src", image_src);
     $("#modal-image").attr("alt", image_name);
     $("#modal-title").text(image_name.toUpperCase());
+}
+
+// Add this new function
+function handleLogout(e) {
+    e.preventDefault();
+    if (confirm("Are you sure you want to logout?")) {
+        window.location.href = "/logout";
+    }
 }
